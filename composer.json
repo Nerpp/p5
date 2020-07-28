@@ -1,0 +1,11 @@
+{
+    "name": "regia/p5",
+    "description": "projet openclassroom",
+    "authors": [
+        {
+            "name": "Nerpp",
+            "email": "regiaurelien@gmail.com"
+        }
+    ],
+    "require": {}
+}
