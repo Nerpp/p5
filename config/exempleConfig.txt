@@ -1,0 +1,12 @@
+#Bdd
+nomBdd = nom de base de donnée
+nomServeur = nom du serveur
+root = nom du root
+mdp = le mot de passe
+
+#Smtp
+Username = l'identifiant du serveur smtp
+setPassword = le mot de passe du smtp
+
+#Mail reception contact
+mail = l'adresse mail qui servira à vous contacter
