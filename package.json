@@ -1,19 +1,28 @@
 {
-  "name": "p5",
+  "name": "blogpersonnel",
   "version": "1.0.0",
-  "description": "projet openclassroom",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Nerpp/p5.git"
+    "url": "git+https://github.com/Nerpp/blogpersonnel.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Nerpp/p5/issues"
+    "url": "https://github.com/Nerpp/blogpersonnel/issues"
   },
-  "homepage": "https://github.com/Nerpp/p5#readme"
+  "homepage": "https://github.com/Nerpp/blogpersonnel#readme",
+  "dependencies": {
+    "bootstrap": "^4.5.0",
+    "font-awesome": "^4.7.0",
+    "get-google-fonts": "^1.2.2",
+    "jquery": "^3.5.1",
+    "popper": "^1.0.1",
+    "popper.js": "^1.16.1",
+    "tinymce": "^5.4.1"
+  }
 }
