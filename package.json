@@ -1,0 +1,19 @@
+{
+  "name": "p5",
+  "version": "1.0.0",
+  "description": "projet openclassroom",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nerpp/p5.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nerpp/p5/issues"
+  },
+  "homepage": "https://github.com/Nerpp/p5#readme"
+}
