@@ -1,0 +1,34 @@
+/* typographie */
+h1,h2,h3,h4,h5,h6
+{
+    font-family: 'Literata',serif;
+}
+
+p
+{
+    font-family: 'Open Sans',sans-serif;
+}
+
+hr
+{
+    width: 50%;
+    size: 3;
+    background-color: midnightblue;
+}
+
+article
+{
+    text-indent: 5%;
+}
+
+body
+{
+    background-image:url("fond2.jpg");
+      /* Full height */
+      height: 100%;
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+}
+
