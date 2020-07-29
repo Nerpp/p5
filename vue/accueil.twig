@@ -1,0 +1,41 @@
+{% extends "layout.twig" %}
+
+{% block titre %}
+	<h1 class="d-none d-sm-block">Aurélien Regi</h1>
+	<h4 class="d-block d-sm-none">Aurélien Regi</h4>
+{% endblock titre %}
+
+{% block soustitre %}
+	<h3 class="d-none d-sm-block font-italic font-weight-light">Développeur backend</h3>
+	<h5 class="d-block d-sm-none font-italic font-weight-light">Développeur backend</h5>
+	<div class="p-2 d-none d-sm-block">
+		<img alt="Photo Personnelle" class="img-fluid img-thumbnail shadow " src="public\img\photoperso\aurelienAlleger.jpg">
+	</div>
+{% endblock %}
+
+{% block main %}
+	<h2 class="d-none d-sm-block p-1 ml-5">Edito</h2>
+	<h5 class="d-block d-sm-none p-1 ml-3">Edito</h5>
+	<div class="shadow d-flex justify-content-center text-justify">
+		<div class="col-8">
+			<article>
+				Ce site web est un projet étudiant, il met en valeur l'apprentissage du php en POO sous format Mvc, couplé avec composer, twig ainsi que Node.js.
+										Composer a été utilisé pour creer un autoloader et installer le module swiftmailer.
+										Twig a été utilisé pour administrer les templates.
+										Node.js pour administrer les differents composants front-end tels que Bootstrap et font-awesome afin de ne pas utiliser de cdn qui ajoute un cout de chargement.
+			</article>
+		</div>
+	</div>
+{% endblock main %}
+
+{% block sidebar %}
+	<div class="text-center">
+		<h2 class="d-none d-sm-block p-1">Bienvenue sur mon blog</h2>
+		<h5 class="d-block d-sm-none p-2">Bienvenue sur mon blog</h5>
+	</div>
+	<div class="text-center">
+		<hr>
+	</div>
+	{{ parent() }}
+{% endblock %}
+

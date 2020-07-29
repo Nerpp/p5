@@ -1,0 +1,57 @@
+{% extends "layout.twig" %}
+{% import "forms.twig" as form %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<form name="{{ current_page }}Formulaire" action="index.php" method="post" class="was-validated">
+					{% if mailConfirmed|length > 0 %}
+						<div class="col">
+							<p>
+								{{ form.input('codeConfirmation','votre Code de confirmation ici','','texte') }}
+							</p>
+						</div>
+						<div class="col">
+							{% if codeConfirmationErr|length > 0 %}
+								<p>
+									<span class="alert alert-danger">{{ codeConfirmationErr }}</span>
+								</p>
+							</div>
+						{% endif %}
+						<p>
+							{{ form.input('password','votre mot de passe doit comporter 6 caractéres minimum',password|default(''),'password') }}
+							{% if passwordErr|length > 0 %}
+								<span class="alert alert-danger">{{ passwordErr }}</span>
+							{% endif %}
+						</p>
+						<p>
+							{{ form.input('passwordConfirm','confirmez votre mot de passe de 6 caractéres',passwordConfirm|default(''),'password') }}
+							{% if passworConfirmdErr|length > 0 %}
+								<span class="alert alert-danger">{{ passworConfirmdErr }}</span>
+							{% endif %}
+						</p>
+
+					{% else %}
+						<p>
+							{{ form.input('mail','votre identifiant','','texte') }}
+						</p>
+						{% if connectionErr|length > 0 %}
+							<div class="col">
+								<p>
+									<span class="alert alert-danger">{{ connectionErr }}</span>
+								</p>
+							</div>
+						{% endif %}
+					{% endif %}
+					<p>
+						<button type="submit" class="btn btn-primary">Soumettre</button>
+					</p>
+					<input type="hidden" name="p" id="page" value="updateMdp">
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock content %}
+
+{% block sidebar %}{% endblock sidebar %}

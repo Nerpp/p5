@@ -1,0 +1,76 @@
+{% extends "layout.twig" %}
+
+{% block sidebar %}{% endblock sidebar %}
+
+{% block content %}
+	<div class="container">
+		{% for article in articles %}
+
+			<p>
+				<li>
+					<a href="index.php?p=visual&id={{ article.article_id }}">{{ article.articles_titre|striptags }}</a>
+				</li>
+			</p>
+
+			<div class="text-justify">
+				<article>{{ article.chapo|striptags }}</article>
+			</div>
+			<div class="d-flex justify-content-end">
+				<p>
+					<b>Publié par
+						{{ article.pseudo }}
+						:</b>
+					le
+					{{ article.articles_date_publication|date("d/m/Y \\à g:i a") }}
+				</p>
+			</div>
+
+			{% if article.date_modification|length > 0 %}
+				<div class="d-flex justify-content-end">
+					<p>
+						<b>
+							Modifié par
+							{{ article.articleModder }}
+							:</b>
+						le
+						{{ article.articles_modification|date("d/m/Y \\à g:i a") }}
+					</p>
+				</div>
+			{% endif %}
+
+			{% if session.administrateur == true %}
+				<div class="d-flex flex-row justify-content-end">
+					<div class="p-1">
+						<form name="modArticle" action="index.php" method="post">
+							<input type="hidden" name='p' value='modifyArticle'>
+							<input type="hidden" name='articlesId' value='{{ article.article_id }}'>
+							<button type='Submit' class="btn btn-info">Modifier</button>
+						</form>
+					</div>
+					<div class="p-1">
+						<form name="statusArticle" action="index.php" method="post">
+							<input type="hidden" name='p' value='statusArticle'>
+							<input type="hidden" name='articlesId' value='{{ article.article_id }}'>
+							<button type='Submit' class="btn btn-info">Dépublier</button>
+						</form>
+					</div>
+					<div class="p-1">
+						<form name="deletArticle" action="index.php" method="post">
+							<input type="hidden" name='p' value='deleteArticle'>
+							<input type="hidden" name='articlesId' value='{{ article.article_id }}'>
+							<button type='Submit' class="btn btn-info">
+								<i class="fas fa-trash fa"></i>
+							</button>
+						</form>
+					</div>
+				</div>
+			{% endif %}
+		{% else %}
+			<div class="jumbotron">
+				<div class="text-center font-italic">
+					<p>(Aucun Article)</p>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock content %}

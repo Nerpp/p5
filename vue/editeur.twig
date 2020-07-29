@@ -1,0 +1,74 @@
+{% extends "layout.twig" %}
+{% import "forms.twig" as form %}
+
+{% block tools %}
+	<script src="node_modules\tinymce\tinymce.min.js" referrerpolicy="origin"></script>
+	<script type="text/javascript">
+		tinymce.init({selector: '#article', toolbar: "forecolor backcolor undo redo | styleselect | bold italic | link image alignleft aligncenter alignright", themes: "node_modules\tinymce\themes\silver\theme.js", branding: false});
+tinymce.init({selector: '#chapo', toolbar: "forecolor backcolor undo redo | styleselect | bold italic | link image alignleft aligncenter alignright", themes: "node_modules\tinymce\themes\silver\theme.js", branding: false});
+	</script>
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+
+				<form name="{{ current_page }}Formulaire" method="post" action="index.php">
+
+					<p>
+						{{ form.input('titre','Votre titre',display.titre|default(''),'texte') }}
+					</p>
+
+					{% if err.titleErr|length > 0 %}
+						<p>
+							<span class="alert alert-danger">{{ err.titleErr }}</span>
+						</p>
+					{% endif %}
+
+					<p>Chapo :</p>
+
+					<p>
+						<textarea id='chapo' type="text" name="chapo">{{ display.chapo|default('') }}</textarea>
+					</p>
+
+					{% if err.chapoErr|length > 0 %}
+						<p>
+							<span class="alert alert-danger">{{ err.chapoErr }}</span>
+						</p>
+					{% endif %}
+
+					<p>Le contenu de l'article :</p>
+
+					<p>
+						<textarea rows="25" id='article' type'text' name='article'>{{ display.contenu|default('') }}</textarea>
+					</p>
+
+					{% if err.articleErr|length > 0 %}
+						<p>
+							<span class="alert alert-danger">{{ err.articleErr }}</span>
+						</p>
+					{% endif %}
+
+					<div class="d-flex flex-row justify-content-end">
+						<div class="p-1">
+							<p>
+								<input type="submit" class="btn btn-primary" name="p" value="Brouillon">
+							</p>
+						</div>
+						<div class="p-1">
+							<p>
+								<input type="submit" class="btn btn-info" name="p" value="Publier">
+							</p>
+						</div>
+					</div>
+
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}
+

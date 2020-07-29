@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+
+		{% block head %}
+			<title>Blog Aurélien
+				{{ current_page |capitalize }}</title>
+		{% endblock head %}
+
+		<link
+		rel="icon" href="public\img\favicon\favicon.ico"/>
+
+		<!-- balise meta SEO google descriptif du site -->
+		<meta name="keywords" content="HTML,CSS,XML,JavaScript,Bootstrap4">
+		<meta name="Blog personnel" content="Blog personnel"/>
+		<meta
+		name="Nerpp" content="blog perso">
+
+		<!-- pour le SEO produit google -->
+		<link
+		rel="alternate" hreflang="fr" href="https://aurelienperso.ovh/blog_perso/"/>
+
+		<!-- admin mobile -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- bootstrap -->
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"> <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-reboot.min.css">
+		<linkrel="stylesheet"
+			href="node_modules/bootstrap/dist/css/bootstrap-grid.min.css">
+			<!-- jQuery library -->
+			<script src="node_modules/jquery/dist/jquery.min.js"></script>
+			<!-- Latest compiled JavaScript -->
+			<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+			<!-- bootstrap -->
+
+			<!-- appel au css -->
+			<link
+			href="public/css/style.index.css" rel="stylesheet" type="Text/CSS"/>
+
+			{# icones  #}
+			<link
+			href='node_modules/font-awesome/css/font-awesome.css' rel="stylesheet" type="Text/CSS"/>
+
+			<!-- typo Literata & Opensans CDN -->
+			<link
+			href="https://fonts.googleapis.com/css?family=Literata|Open+Sans&display=swap" rel="stylesheet">
+
+
+			{# chargé des scripts particulier comme tinymce #}
+			{% block tools %}{% endblock %}
+		</head>
+		<body>
+			<!-- Navbar -->
+			<div class="container-fluid">
+				<div class="row">
+					<nav class="col-12 navbar navbar-expand-xl navbar navbar-light shadow font-weight-bolder">
+
+						<div class="mx-auto text-white">
+							<p>
+								<h2 c class="d-block d-xl-none">Menu</h2>
+							</p>
+						</div>
+						<button aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarColor02" data-toggle="collapse" type="button">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarColor02">
+							<ul class="navbar-nav mx-auto">
+								<li class="nav-item p-4 {{ activeClass('accueil') }}">
+									<a class="nav-link" href="index.php?p=accueil">Accueil</a>
+								</li>
+								<li class="nav-item p-4 {{ activeClass('articles') }}">
+									<a class="nav-link" href="index.php?p=articles">Articles</a>
+								</li>
+								<li class="nav-item p-4 {{ activeClass('cv') }}">
+									<a class="nav-link" href="index.php?p=cv">CV</a>
+								</li>
+								<li class="nav-item p-4 {{ activeClass('contact') }}">
+									<a class="nav-link" href="index.php?p=contact">Contact</a>
+								</li>
+								{% if session.administrateur == true %}
+									<li class="nav-item p-4 {{ activeClass('administrateur') }}">
+										<a class="nav-link" href="index.php?p=administrateur">Administrateur</a>
+									</li>
+								{% endif %}
+							</ul>
+							<ul class="navbar-nav">
+								{% if session.pseudonyme|length > 0 %}
+									<li class="nav-item p-4">
+										<div class="text-white">
+											Bonjour bienvenue
+											{{ session.pseudonyme }}
+										</div>
+									</li>
+									<li class="nav-item p-3">
+										<div class="">
+											<a class="btn btn-info" href="index.php?p=deconnection" role="button">Déconnection</a>
+										</div>
+									</li>
+								{% else %}
+									<li class="nav-item p-4">
+										<a class="btn btn-info" href="index.php?p=connection" role="button">Se connecter</a>
+									</li>
+									<li class="nav-item p-4">
+										<a class="btn btn-info" href="index.php?p=inscription" role="button">S'inscrire</a>
+									</li>
+								{% endif %}
+							</ul>
+						</div>
+					</nav>
+				</div>
+			</div>
+			<!-- navbar -->
+			{% block header %}
+				<div class="container-fluid p-5">
+					<div class="row">
+						<div class="col-12 text-center">
+							{% block titre %}
+								<h1 class="d-none d-sm-block">{{ current_page |capitalize }}</h1>
+								<h3 class="d-block d-sm-none">{{ current_page |capitalize }}</h3>
+							{% endblock titre %}
+						</div>
+						<div class="col-12 text-center">
+							{% block soustitre %}{% endblock soustitre %}
+						</div>
+					</div>
+				</div>
+			{% endblock header %}
+
+			{% block content %}
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12 col-xl-8">
+							{% block main %}{% endblock main %}
+						</div>
+						<div class="col-12 col-xl-4 ">
+							{% block sidebar %}
+
+								<h2 class="d-none d-sm-block p-1 text-center">Derniers Articles</h2>
+								<h5 class="d-block d-sm-none p-1 text-center">Derniers Articles</h5>
+
+								{% for article in articles %}
+									<div class="jumbotron">
+										<p>
+											<li>
+												<a href="index.php?p=visual&id={{ article.article_id }}">{{ article.articles_titre|striptags }}</a>
+											</li>
+										</p>
+										<div class="text-justify">
+											<article>{{ article.chapo|striptags|slice(0,200) }}...</article>
+										</div>
+										<div class="d-flex flex-row justify-content-end">
+											<p class="p-1">
+												<b>Publié par
+													{{ article.pseudo }}
+													:</b>
+												le
+												{{ article.articles_date_publication|date("d/m/Y \\à g:i a") }}
+											</p>
+										</div>
+										{% if article.date_modification|length > 0 %}
+											<div class="d-flex flex-row justify-content-end">
+												<p>
+													<b>
+														Modifié par
+														{{ article.articleModder }}
+														:</b>
+													le
+													{{ article.articles_modification|date("d/m/Y \\à g:i a") }}
+												</p>
+											</div>
+										{% endif %}
+									</div>
+									{% if session.administrateur == true %}
+										<div class="d-flex flex-row justify-content-end">
+											<div class="p-1">
+												<form name="modArticle" action="index.php" method="post">
+													<input type="hidden" name='p' value='modifyArticle'>
+													<input type="hidden" name='articlesId' value='{{ article.article_id }}'>
+													<button type='Submit' class="btn btn-info">Modifier</button>
+												</form>
+											</div>
+											<div class="p-1">
+												<form name="statusArticle" action="index.php" method="post">
+													<input type="hidden" name='p' value='statusArticle'>
+													<input type="hidden" name='articlesId' value='{{ article.article_id }}'>
+													<button type='Submit' class="btn btn-info">Dépublier</button>
+												</form>
+											</div>
+											<div class="p-1">
+												<form name="deletArticle" action="index.php" method="post">
+													<input type="hidden" name='p' value='deleteArticle'>
+													<input type="hidden" name='articlesId' value='{{ article.article_id }}'>
+													<button type='Submit' class="btn btn-info">
+														<i class="fas fa-trash fa"></i>
+													</button>
+												</form>
+											</div>
+										</div>
+									{% endif %}
+								{% else %}
+									<div class="d-flex justify-content-center">
+										<p>Aucun Article</p>
+									</div>
+								{% endfor %}
+
+							{% endblock sidebar %}
+						</div>
+					</div>
+				</div>
+			{% endblock content %}
+		</body>
+	</head>
+</html>

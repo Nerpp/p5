@@ -1,0 +1,93 @@
+{% extends "layout.twig" %}
+
+{% import "forms.twig" as form %}
+
+{% block main %}
+
+	<form name="{{ current_page }}Formulaire" action="index.php" method="post" class="was-validated">
+		<p>
+			{{ form.input('pseudonyme','votre pseudonyme',pseudonyme|default(''),'texte') }}
+			{% if pseudoErr|length > 0 %}
+				<span class="alert alert-danger">{{ pseudoErr }}</span>
+			{% endif %}
+		</p>
+		<p>
+			{{ form.input('mail','votre mail',mail|default(''),'texte') }}
+			{% if mailErr|length > 0 %}
+				<span class="alert alert-danger">{{ mailErr }}</span>
+			{% endif %}
+		</p>
+		<p>
+			{{ form.input('password','votre mot de passe doit comporter 6 caractéres minimum',password|default(''),'password') }}
+			{% if passwordErr|length > 0 %}
+				<span class="alert alert-danger">{{ passwordErr }}</span>
+			{% endif %}
+		</p>
+		<p>
+			{{ form.input('passwordConfirm','confirmez votre mot de passe de 6 caractéres',passwordConfirm|default(''),'password') }}
+			{% if passworConfirmdErr|length > 0 %}
+				<span class="alert alert-danger">{{ passworConfirmdErr }}</span>
+			{% endif %}
+		</p>
+		<p>
+			<button type="submit" class="btn btn-primary">Soumettre</button>
+		    <input type="hidden" name="p" id="page" value="creationCompte">
+		</p>
+	</form>
+{% endblock main %}
+
+{% block sidebar %}
+	<div class="text-center">
+		<p>
+			<h3>Conseil de sécurité pour vos mots de passe</h3>
+		</p>
+	</div>
+	<div class="text-center">
+		<p>
+			<a href="https://www.ssi.gouv.fr/guide/mot-de-passe/" target="_blank">ANSSI : Agence Nationale de la sécurité des systémes d'information</a>
+		</p>
+	</div>
+	<div class="text-center">
+		<p>
+			{% if affichageEnvoitErr|length > 0 %}
+				<span class="alert alert-danger">{{ affichageEnvoitErr }}</span>
+			{% endif %}
+		</p>
+	</div>
+
+	<form name="validationMailFormulaire" action="index.php" method="post" class="was-validated">
+		{% if mailConfirmed|length > 0 %}
+
+			<p>
+				{{ form.input('codeConfirmation','votre Code de confirmation ici','','texte') }}
+			</p>
+
+			{% if codeConfirmationErr|length > 0 %}
+				<p>
+					<span class="alert alert-danger">{{ codeConfirmationErr }}</span>
+				</p>
+
+			{% endif %}
+		{% else %}
+
+			<p>
+				<strong>Si vous êtes déjà inscrit et que vous n'avez pas confirmé votre adresse mail</strong>
+			</p>
+
+			<p>
+				{{ form.input('mail','ecriver votre adresse mail ici',mailConfirmed|default(''),'texte') }}
+			</p>
+
+			{% if confirmationMailErr|length > 0 %}
+
+				<p>
+					<span class="alert alert-danger">{{ confirmationMailErr }}</span>
+				</p>
+
+			{% endif %}
+		{% endif %}
+		<button type="submit" class="btn btn-primary">Soumettre</button>
+		<input type="hidden" name="p" id="page" value="validationMail"></p>
+    </form>
+{% endblock sidebar %}
+

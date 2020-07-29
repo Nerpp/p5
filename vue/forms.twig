@@ -1,0 +1,15 @@
+{% macro input(name, label,value,type) %}
+<div class="form-group">
+    <label for="{{ name }}">{{ label | capitalize }} :</label>
+    <input type="{{ type }}" class="form-control" id="{{ name }}" placeholder="{{ label }}" value="{{ value }}"  name="{{ name }}"
+     class="valid-feedback" class="invalid-feedback" required>
+</div>
+{% endmacro input %}
+
+{% macro textarea(name,label,rows) %}
+<div class="form-group">
+    <label for="{{ name }}">{{ label | capitalize }} :</label>
+<textarea type="text" class="form-control" id="{{ name }}" placeholder="{{ label }}" name="{{ name }}" maxlength="255"
+class="valid-feedback" class="invalid-feedback" rows="{{ rows }}"  required></textarea>
+</div>
+{% endmacro textarea %}

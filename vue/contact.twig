@@ -1,0 +1,42 @@
+{% extends "layout.twig" %}
+
+{% import "forms.twig" as form %}
+
+
+{% block content %}
+	<div class="container">
+		<form name="{{ current_page }}Formulaire" action="index.php" class="was-validated">
+			<p>
+				{{ form.input('nom','votre nom','','texte') }}
+			</p>
+			{% if display.nomErr|length > 0 %}
+				<span class="alert alert-danger">{{ display.nomErr }}</span>
+			{% endif %}
+			<p>
+				{{ form.input('prénom','votre prénom','','texte') }}
+			</p>
+			{% if display.prénomErr|length > 0 %}
+				<span class="alert alert-danger">{{ display.prénomErr }}</span>
+			{% endif %}
+			<p>
+				{{ form.input('email','votre email','','texte') }}
+			</p>
+			{% if display.emailErr|length > 0 %}
+				<span class="alert alert-danger">{{ display.emailErr }}</span>
+			{% endif %}
+			<p>
+				{{ form.textarea('message','votre message','',5) }}
+			</p>
+			{% if display.messageErr|length > 0 %}
+				<span class="alert alert-danger">{{ display.messageErr }}</span>
+			{% endif %}
+			<p>
+				<button type="submit" class="btn btn-primary">Soumettre</button>
+				<input type="hidden" name='p' value='contactAdmin'>
+			</p>
+		</form>
+
+	</div>
+{% endblock content %}
+
+{% block sidebar %}{% endblock sidebar %}

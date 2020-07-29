@@ -1,0 +1,56 @@
+{% extends "layout.twig" %}
+{% import "forms.twig" as form %}
+
+{% block tools %}
+	<script src="node_modules\tinymce\tinymce.min.js" referrerpolicy="origin"></script>
+	<script type="text/javascript">
+		tinymce.init({selector: '#article', toolbar: "forecolor backcolor undo redo | styleselect | bold italic | link image alignleft aligncenter alignright", themes: "node_modules\tinymce\themes\silver\theme.js", branding: false});
+        tinymce.init({selector: '#chapo', toolbar: "forecolor backcolor undo redo | styleselect | bold italic | link image alignleft aligncenter alignright", themes: "node_modules\tinymce\themes\silver\theme.js", branding: false});
+	</script>
+{% endblock %}
+
+{% block content %}
+	<div class="container p-1">
+		<div class="row">
+			<div class="col-12">
+				<form name="{{ current_page }}Formulaire" method="post" action="index.php">
+					<div class="col-4">
+						<p>
+							{{ form.input('titre','Votre titre',mod.articles_titre|default(''),'texte') }}
+						</p>
+						<div class="col">
+							{% if err.articleErr|length > 0 %}
+								<p>
+									<span class="alert alert-danger">{{ err.articleErr }}</span>
+								</p>
+							{% endif %}
+						</div>
+					</div>
+					<div class="col">
+						<p>Chapo :</p>
+					</div>
+					<div class="col">
+						<p>
+							<textarea rows='10' id='chapo' type="text" name="chapo" >{{ mod.chapo|default('') }}</textarea>
+						</p>
+					</div>
+					<div class="col">
+						<p>Le contenu de l'article :</p>
+					</div>
+					<div class="col">
+						<p>
+							<textarea rows="25" id='article' type'text' name='article'>{{ mod.articles_contenu|default('') }}</textarea>
+						</p>
+					</div>
+					<div class="col">
+						<p>
+							<button type="submit" class="btn btn-primary">Modifier</button>
+							<input type="hidden" name="p" id="page" value="recMod">
+							<input type="hidden" name="articleId" id="page" value= '{{ mod.article_id }}'>
+						</p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends "layout.twig" %}
+
+{% block titre %}
+	<h1 class="d-none d-sm-block">Page Administrateur</h1>
+	<h4 class="d-block d-sm-none">Page Administrateur</h4>
+{% endblock titre %}
+
+{% block main %}
+	<div class="d-flex flex-row">
+		<h1 class="d-none d-sm-block p-1 ml-5">Brouillons</h1>
+		<h5 class="d-block d-sm-none p-1 ml-3">Brouillons</h5>
+
+		<a class="btn btn-info ml-4 p-3 m-4" href="index.php?p=editeur" role="button">New article</a>
+	</div>
+	{% for draft in drafts %}
+		<div class="p-1">
+			<li>{{ draft.articles_titre|e }}</li>
+		</div>
+		<div class="text-justify p-1">
+			<article>{{ draft.chapo|striptags|raw }}</article>
+		</div>
+		<div class="d-flex flex-row justify-content-end p-1">
+			<p>
+				<b>Publié par
+					{{ draft.pseudo }}
+					:</b>
+				le
+				{{ draft.articles_date_publication|date("d/m/Y \\à g:i a") }}
+			</p>
+		</div>
+		{% if draft.date_modification|length > 0 %}
+			<div class="d-flex flex-row justify-content-end">
+				<p>
+					<b>
+						Modifié par
+						{{ draft.articleModder }}
+						:</b>
+					le
+					{{ draft.0.articles_modification|date("d/m/Y \\à g:i a") }}
+				</p>
+			</div>
+		{% endif %}
+		<div class="d-flex flex-row justify-content-end">
+			<div class="p-1">
+				<form name="modDraftFormulaire" action="index.php" method="post">
+					<input type="hidden" name='p' value='modifyArticle'>
+					<input type="hidden" name='articlesId' value='{{ draft.article_id }}'>
+					<button type='Submit' class="btn btn-info">Modifier</button>
+				</form>
+			</div>
+			<div class="p-1">
+				<form name="statusArticle" action="index.php" method="post">
+					<input type="hidden" name='p' value='statusArticle'>
+					<input type="hidden" name='articlesId' value='{{ draft.article_id }}'>
+					<button type='Submit' class="btn btn-info">Publier</button>
+				</form>
+			</div>
+			<div class="p-1">
+				<form name="deletArticlee" action="index.php" method="post">
+					<input type="hidden" name='p' value='deleteArticle'>
+					<input type="hidden" name='articlesId' value='{{ draft.article_id }}'>
+					<button type='Submit' class="btn btn-info">
+						<i class="fas fa-trash fa"></i>
+					</button>
+				</form>
+			</div>
+		</div>
+	{% else %}
+		<div class="text-center jumbotron">
+			<p>
+				<i>(Aucun Brouillon)</i>
+			</p>
+		</div>
+	{% endfor %}
+
+	<p>
+		<h1 class="d-none d-sm-block p-1 ml-5">Commentaires</h1>
+		<h5 class="d-block d-sm-none p-1 ml-3">Commentaires</h5>
+	</p>
+
+	{% for comments in comment %}
+
+
+		<p>
+			<b>{{ comments.pseudo }}</b>
+			le
+			<i>{{ comments.commentaires_date|date("d/m/Y \\à g:ia") }}</i>
+			:<br>
+			<div class="d-flex justify-content-center text-justify">
+				{{ comments.commentaires_utilisateur|raw }}
+			</div>
+		</p>
+		<div class="d-flex flex-row justify-content-end">
+			<div class="p-1">
+				<form name="statusComment" action="index.php" method="post">
+					<input type="hidden" name='p' value='allowComment'>
+					<input type="hidden" name='commentaireId' value='{{ comments.commentaires_id }}'>
+					<button type='Submit' class="btn btn-info">Autoriser</button>
+				</form>
+			</div>
+			<div class="p-1">
+				<form name="deleteComment" action="index.php" method="post">
+					<input type="hidden" name='p' value='deleteComment'>
+					<input type="hidden" name='commentaireId' value='{{ comments.commentaires_id }}'>
+					<button type='Submit' class="btn btn-info">
+						<i class="fas fa-trash fa"></i>
+					</button>
+				</form>
+			</div>
+		</div>
+	{% else %}
+		<div class="text-center jumbotron">
+			<p>
+				<i>(Aucun Commentaire)</i>
+			</p>
+		</div>
+	{% endfor %}
+{% endblock main %}
+
+{% block sidebar %}
+	{{ parent() }}
+{% endblock sidebar %}

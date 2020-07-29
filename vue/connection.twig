@@ -1,0 +1,37 @@
+{% extends "layout.twig" %}
+
+{% import "forms.twig" as form %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <form name="{{ current_page }}Formulaire" action="index.php" method="post" class="was-validated">
+                    <p>
+                        {{ form.input('mail','votre identifiant','','texte') }}
+                    </p>
+                    <p>
+                        {{ form.input('password','votre mot de passe','','password') }}
+                    </p>
+                    {% if connectionErr|length > 0 %}
+                        <div class="col">
+                            <p>
+                                <span class="alert alert-danger">{{ connectionErr }}</span>
+                            </p>
+                        </div>
+                    {% endif %}
+                    <p>
+                        <button type="submit" class="btn btn-primary">Soumettre</button>
+                        <div class="">
+                            <a href="index.php?p=update">Mot de passe Oublié</a>
+                        </div>
+                    </p>
+                    <input type="hidden" name="p" id="page" value="connectionUtilisateurs">
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+{% block sidebar %}{% endblock sidebar %}
