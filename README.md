@@ -1,5 +1,7 @@
 # p5
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b591b65432a142b7aa790cd95e17169a)](https://app.codacy.com/manual/Nerpp/p5?utm_source=github.com&utm_medium=referral&utm_content=Nerpp/p5&utm_campaign=Badge_Grade_Dashboard)
+
 # blogpersonnel
 
 Etape 1
