@@ -3,6 +3,8 @@ namespace App\controleur;
 
 class ArticleControleur
 {
+
+    
     private $_aDisplay      = array();
     private $_sDirPath      = 'accueil';
 
