@@ -23,7 +23,7 @@ Etape 6
 Ouvrer le phpAdmin de votre serveur et Importer la base de donnée selon le nom que vous lui aurez donné dans le fichier config.txt
 
 Etape 7
-Pour les droits administrateurs creez un compte ensuite allez dans la base de donnée et ouvrer la table utilisateurs. Une fois dans la table adminsitrateur dans la colonne ou votre compte est enregistré changé la valeur administrateur de 0 à 1.
+Pour les droits administrateurs creez un compte ensuite allez dans la base de donnée et ouvrer la table utilisateurs. Une fois dans la table utilisateurs, dans la colonne ou votre compte est enregistré changé la valeur administrateur : 0 à 1.
 
 Etape 8
 Construisez les routes de l'autoload composer avec la commande composer dump-autoload --optimize
