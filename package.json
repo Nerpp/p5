@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/Nerpp/blogpersonnel#readme",
   "dependencies": {
-    "bootstrap": "^4.5.0",
+    "bootstrap": "^4.5.1",
     "font-awesome": "^4.7.0",
     "get-google-fonts": "^1.2.2",
     "jquery": "^3.5.1",
