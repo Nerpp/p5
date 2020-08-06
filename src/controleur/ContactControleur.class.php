@@ -21,8 +21,12 @@ class ContactControleur
 
     public function controlMail($aParam)
     {
+        if (empty($_SESSION)) {
+            $this->_aDisplay['messageErr'] = 'Vous devez être connecté pour envoyer votre message';
+            return;
+        }
+        
         foreach ($aParam as $key => $value) {
-            var_dump($key);
             if ($key !== 'email') {
                 $verifiedArray[$key] = $this->_aInitSecurite->securiteString($value);
             } else {
