@@ -39,6 +39,7 @@ class ContactControleur
         if (!in_array(FALSE, $verifiedArray)) {
             $this->_aConfig->configMail();
             $this->_aMailer->envoitMail('Contact Client',$this->_aConfig->getMail(), '', $sMessage);
+            $this->_aDisplay['messageErr'] = 'Succés envoit';
         }else {
             $key = array_search(FALSE, $verifiedArray);
             $this->_aDisplay[$key.'Err'] = 'La valeur est incorrecte';

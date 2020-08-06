@@ -28,7 +28,7 @@
 				{{ form.textarea('message','votre message','',5) }}
 			</p>
 			{% if display.messageErr|length > 0 %}
-				<span class="alert alert-danger">{{ display.messageErr }}</span>
+				<p><span class="alert alert-danger">{{ display.messageErr }}</span></p>	
 			{% endif %}
 			<p>
 				<button type="submit" class="btn btn-primary">Soumettre</button>
