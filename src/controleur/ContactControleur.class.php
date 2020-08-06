@@ -22,6 +22,7 @@ class ContactControleur
     public function controlMail($aParam)
     {
         foreach ($aParam as $key => $value) {
+            var_dump($key);
             if ($key !== 'email') {
                 $verifiedArray[$key] = $this->_aInitSecurite->securiteString($value);
             } else {

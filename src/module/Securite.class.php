@@ -37,13 +37,6 @@ class Securite
         }
     }
 
-    public function newID()
-    {
-        $lenght = random_int ( 20 , 30 );
-        return bin2hex(random_bytes($lenght));
-
-    }
-
     public function passHash(string $value)
     {
         return password_hash($value, PASSWORD_DEFAULT);
