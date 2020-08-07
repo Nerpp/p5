@@ -9,6 +9,7 @@ class GestionnaireTemplate
 
     public function __construct()
     {
+        //test
         $loader = new \Twig\Loader\FilesystemLoader('vue');
         $twig = new \Twig\Environment($loader, [
             'cache' => 'tmp', //'tmp',
