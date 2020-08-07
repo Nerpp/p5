@@ -58,8 +58,8 @@ class Securite
     {
             $method = 'aes-256-cbc';
             //        string openssl_decrypt ( string $data , string $method , string $password, option OPENSSL_RAW_DATA ou OPENSSL_ZERO_PADDING, $iv )
-            $resultatDechiffrement = openssl_decrypt($dechiffrement, $method, $clefDechiffrement, true, $ivDechiffrement);
-            return $resultatDechiffrement;
+            $result = openssl_decrypt($dechiffrement, $method, $clefDechiffrement, true, $ivDechiffrement);
+            return $result;
     }
 
     public function securiteMail(string $value)
